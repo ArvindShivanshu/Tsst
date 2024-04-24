@@ -23,7 +23,7 @@ mongo_client = MongoClient(uri)
 db = mongo_client["dem-ref-bot"]
 
 
-admin_chat_id = 7119174092
+admin_chat_id = 5122882808
 
 min_with = 1
 required_channels = ["@joinxyza", "@joinxyza", "@joinxyza", "@joinxyza"]
