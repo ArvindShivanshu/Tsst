@@ -204,10 +204,8 @@ def send_join_message(message):
     if not chat_member(user_id): # use more channels ["channel1","channel2"]
         join_markup = InlineKeyboardMarkup(row_width=2)
         channels = [
-          " yash_hacking_1",
-          " bot_making_tips",
-          " Newrummy_casino",
-          " +CaOLu8fKrLBiNGI1"
+          " yash_hacking_1"," bot_making_tips",
+          " Newrummy_casino"," +CaOLu8fKrLBiNGI1"
       ]
   # Update with your channel usernames
 
