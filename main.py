@@ -32,7 +32,7 @@ payment_channel = '@joinxyza'
 
 
 def chat_member(user_id):
-    channel_ids = ['@Earning_Flash', '@tehsiltech', '@TECH_MISMAMUL', '@OkWinAppPrediction']
+    channel_ids = ['@joinxyza', '@joinxyza', '@joinxyza', '@joinxyza']
     user_id = str(user_id)  # Convert to string in case it's an integer
 
     for channel_id in channel_ids:
