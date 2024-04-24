@@ -199,14 +199,35 @@ def status_command(message):
 
         bot.send_message(message.chat.id, f"Total users: {user_count}")
 
+def send_hindi_message(user_id):
+    bot.send_message(user_id, "कृपया सभी चैनलों को ज्वाइन करें।")
+
+from telebot import types
+
 def send_join_message(message):
     user_id = message.chat.id
-    if not chat_member(user_id): # use more channels ["channel1","channel2"]
-        join_markup = InlineKeyboardMarkup(row_width=2)
-        channels = [
-          " yash_hacking_1"," bot_making_tips",
-          " Newrummy_casino"," +CaOLu8fKrLBiNGI1"
-      ]
+    h = is_chat_member(user_id)
+    if not h:
+        join_markup = types.InlineKeyboardMarkup()
+        join_markup.row(
+            types.InlineKeyboardButton(text="Join", url="https://t.me/tehsiltech"),
+            types.InlineKeyboardButton(text="Join", url="https://t.me/+oZvOhd0YeXZhMDY1")
+        )
+        join_markup.row(
+            types.InlineKeyboardButton(text="Join", url="https://t.me/+NEF3KcQzI5BkMzc1"),
+            types.InlineKeyboardButton(text="Join", url="https://t.me/Earning_Flash")
+        )
+        join_markup.row(
+            types.InlineKeyboardButton(text="Join", url="https://t.me/TECH_MISMAMUL"),
+            types.InlineKeyboardButton(text="Join", url="https://t.me/+hf5sPpkUse1iYTM1")
+        )
+        
+        join_markup.row(types.InlineKeyboardButton(text="Verify", callback_data="verify"))
+
+        bot.send_message(user_id, "*Must Join Our All channels before continue*", parse_mode='Markdown', reply_markup=join_markup)
+        send_hindi_message(user_id)
+    else:
+        menu(user_id)
   # Update with your channel usernames
 
         for channel in channels:
