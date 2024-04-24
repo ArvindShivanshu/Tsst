@@ -218,16 +218,16 @@ def send_join_message(message):
     if not h:
         join_markup = types.InlineKeyboardMarkup()
         join_markup.row(
-            types.InlineKeyboardButton(text="Join", url="https://t.me/tehsiltech"),
-            types.InlineKeyboardButton(text="Join", url="https://t.me/+oZvOhd0YeXZhMDY1")
+            types.InlineKeyboardButton(text="Join", url="https://t.me/joinxyza"),
+            types.InlineKeyboardButton(text="Join", url="https://t.me/joinxyza")
         )
         join_markup.row(
-            types.InlineKeyboardButton(text="Join", url="https://t.me/+NEF3KcQzI5BkMzc1"),
-            types.InlineKeyboardButton(text="Join", url="https://t.me/Earning_Flash")
+            types.InlineKeyboardButton(text="Join", url="https://t.me/joimxyza"),
+            types.InlineKeyboardButton(text="Join", url="https://t.me/joinxyza")
         )
         join_markup.row(
-            types.InlineKeyboardButton(text="Join", url="https://t.me/TECH_MISMAMUL"),
-            types.InlineKeyboardButton(text="Join", url="https://t.me/+hf5sPpkUse1iYTM1")
+            types.InlineKeyboardButton(text="Join", url="https://t.me/joinxyza"),
+            types.InlineKeyboardButton(text="Join", url="https://t.me/joinxyza")
         )
         
         join_markup.row(types.InlineKeyboardButton(text="Verify", callback_data="verify"))
