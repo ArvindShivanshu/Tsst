@@ -80,25 +80,38 @@ def menu(user_id):
     time.sleep(1)
     ref_bons(user_id)
 
-
 @bot.message_handler(commands=['broadcast'])
 def send_broadcast(message):
-    if message.chat.id == admin_chat_id:
-        bot.send_message(message.chat.id, "Send Your Broadcast Message With HTMl")
-        bot.register_next_step_handler(message, send_broadcast2)
-    else:
-        return
+                if message.chat.id == admin_chat_id:
+                    bot.send_message(message.chat.id, "Send Your Broadcast Message With HTMl")
+                    bot.register_next_step_handler(message, send_broadcast2)
+                else:
+                    return
 
 def send_broadcast2(message):
-    user_ids = [user["user_id"] for user in db.users.find({}, {"user_id": 1})]
-    for user_id in user_ids:
-        try:
-            message_id = bot.send_message(user_id, message.text,parse_mode="HTML")
-            bot.pin_chat_message(chat_id=user_id, message_id=message_id.message_id)
-            time.sleep(1)
-        except Exception as e:
-            return
-            # print(f"Hata: {e}")
+            broadcast_message = message.text
+            user_ids = [user["user_id"] for user in db.users.find({}, {"user_id": 1})]
+            for user_id in user_ids:
+                try:
+                    member = bot.get_chat_member(payment_channel, user_id)
+                    if member.status not in ['left', 'kicked']:
+                        message_id = bot.send_message(user_id, broadcast_message,parse_mode="HTML")
+                        bot.pin_chat_message(chat_id=user_id, message_id=message_id.message_id)
+                        time.sleep(1)
+                    else:
+                        db.users.delete_one({'user_id': user_id})
+                except Exception as e:
+                    print(f"Error sending broadcast message to user {user_id}: {e}")
+                    db.users.delete_one({'user_id': user_id})
+
+@bot.message_handler(commands=['test'])
+def test_broadcast(message):
+    user_id = 6344755142
+    try:
+        bot.send_message(user_id, "Test Broadcast Message")
+    except Exception as e:
+        print(f"Error: {e}")
+
 
 @bot.message_handler(commands=['broadcastwithbtn'])
 def send_broadcast_with_btn(message):
