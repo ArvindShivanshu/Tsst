@@ -25,7 +25,7 @@ db = mongo_client["dem-ref-bot"]
 
 admin_chat_id = 5122882808
 
-min_with = 1
+min_with = 20
 required_channels = ["@joinxyza", "@joinxyza", "@joinxyza", "@joinxyza"]
 payment_channel = '@joinxyza'
 
