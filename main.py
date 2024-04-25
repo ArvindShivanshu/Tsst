@@ -79,6 +79,45 @@ def menu(user_id):
 
     time.sleep(1)
     ref_bons(user_id)
+
+
+
+
+
+
+
+    #new user notification 
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    user_id = int(message.chat.id)
+    first_name = message.chat.first_name
+    last_name = message.chat.last_name
+    username = message.chat.username
+
+    # Track referral
+    ref_by = message.text.split()[1] if len(message.text.split()) > 1 and message.text.split()[1].isdigit() else None
+
+    if not db.users.find_one({'user_id': user_id}):
+        if ref_by and int(ref_by)!= user_id and db.users.find_one({'user_id': int(ref_by)}):
+            db.users.update_one({'user_id': user_id}, {'$set': {'user_id': user_id, 'ref_by': int(ref_by)}}, upsert=True)
+            db.users.update_one({'user_id': int(ref_by)}, {'$inc': {'total_ref': 1}}, upsert=True)
+        else:
+            db.users.update_one({'user_id': user_id}, {'$set': {'user_id': user_id, 'ref_by': "none"}}, upsert=True)
+
+    # Send new user notification to admin
+    admin_message = f"New user joined!\n\nUsername: @{username}\nUser ID: {user_id}\nFirst Name: {first_name}\nLast Name: {last_name}\nUser Link: https://t.me/{username}"
+    bot.send_message(admin_chat_id, admin_message)
+
+    # Check user membership
+    send_join_message(message)
+#new user notification ended
+
+
+
+
+
+
+
 #stats
 
 @bot.message_handler(commands=['stats'])
