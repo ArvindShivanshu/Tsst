@@ -79,6 +79,16 @@ def menu(user_id):
 
     time.sleep(1)
     ref_bons(user_id)
+#stats
+
+@bot.message_handler(commands=['stats'])
+def stats_command(message):
+    if message.chat.id == admin_chat_id:
+        user_count = db.users.count_documents({})
+        bot.send_message(message.chat.id, f"Total users: {user_count}🥂\n\n Contact- @Future_herenow for any query")
+    else:
+        bot.send_message(message.chat.id, "This command is only available for the admin.")
+
 
 @bot.message_handler(commands=['broadcast'])
 def send_broadcast(message):
