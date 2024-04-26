@@ -112,7 +112,21 @@ def send_welcome(message):
     send_join_message(message)
 #new user notification ended
 
+ #add  fund started
 
+@bot.message_handler(commands=['addfund'])
+def add_funds(message):
+    if message.chat.id == admin_chat_id:
+        args = message.text.split()[1:]
+        if len(args) == 2 and args[0].isdigit() and re.match(r'^\d+(\.\d{1,8})?$', args[1]):
+            user_id = int(args[0])
+            amount = float(args[1])
+            db.users.update_one({'user_id': user_id}, {'$inc': {'balance': amount}}, upsert=True)
+            bot.send_message(message.chat.id, f"Added {amount} INR to user {user_id}'s account.")
+        else:
+            bot.send_message(message.chat.id, "Usage: /addfund [user_id] [amount]")
+    else:
+        bot.send_message(message.chat.id, "This command is only available for the admin.")
 
 
 
