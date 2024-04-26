@@ -123,7 +123,30 @@ def add_funds(message):
         bot.send_message(message.chat.id, "This command is only available for the admin.")
 
 
+#chk balance and t balance
 
+@bot.message_handler(commands=['checkbalance'])
+def check_balance(message):
+    if message.chat.id == admin_chat_id:
+        bot.send_message(message.chat.id, "Enter User ID to check balance")
+        bot.register_next_step_handler(message, check_balance_step)
+
+def check_balance_step(message):
+    user_id = message.text
+    userData = db.users.find_one({'user_id': int(user_id)})
+    if userData:
+        balance = userData.get('balance', 0)
+        bot.send_message(message.chat.id, f"Balance of User ID {user_id}: ₹{balance:.2f}")
+    else:
+        bot.send_message(message.chat.id, "User not found")
+
+@bot.message_handler(commands=['totalbalance'])
+def total_balance(message):
+    if message.chat.id == admin_chat_id:
+        total_balance = 0
+        for user in db.users.find():
+            total_balance += user.get('balance', 0)
+        bot.send_message(message.chat.id, f"Total balance of all users: ₹{total_balance:.2f}")
 
 
 #stats
