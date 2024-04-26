@@ -96,20 +96,6 @@ def send_welcome(message):
     
 # check balance and total balance
 
-@bot.message_handler(commands=['checkbalance'])
-def check_balance(message):
-    if message.chat.id == admin_chat_id:
-        bot.send_message(message.chat.id, "Enter User ID to check balance")
-        bot.register_next_step_handler(message, check_balance_step)
-
-def check_balance_step(message):
-    user_id = message.text
-    userData = db.users.find_one({'user_id': int(user_id)})
-    if userData:
-        balance = userData.get('balance', 0)
-        bot.send_message(message.chat.id, f"Balance of User ID {user_id}: ₹{balance:.2f}")
-    else:
-        bot.send_message(message.chat.id, "User not found")
 
 @bot.message_handler(commands=['totalbalance'])
 def total_balance(message):
