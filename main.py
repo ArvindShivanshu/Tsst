@@ -94,8 +94,8 @@ def send_welcome(message):
     last_name = message.chat.last_name
     username = message.chat.username
 # check balance and total balance
-    @bot.message_handler(commands=['checkbalance'])
-def check_balance(message):
+@bot.message_handler(commands=['checkbalance'])
+    def check_balance(message):
     if message.chat.id == admin_chat_id:
         bot.send_message(message.chat.id, "Enter User ID to check balance")
         bot.register_next_step_handler(message, check_balance_step)
