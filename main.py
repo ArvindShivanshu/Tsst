@@ -528,8 +528,10 @@ def send_withdraw(message,amount,upi):
     user_id = message.chat.id
     name = message.chat.first_name
     comment = f"@{bot.get_me().username}"
-
-  url = f"https://full2sms.in/api/v2/payout?mid=dYETiuRZGavq35JBhkx68LU42&mkey=z6DeCSPFhOuwbNnQkmfVJZaX4&guid=QB9xFHnMZ6OaVGu1TNJArUWRX&type=upi&amount={amount}&upi={upi}&info={comment}"
+    
+    
+    
+    url = f"https://full2sms.in/api/v2/payout?mid=dYETiuRZGavq35JBhkx68LU42&mkey=z6DeCSPFhOuwbNnQkmfVJZaX4&guid=QB9xFHnMZ6OaVGu1TNJArUWRX&type=upi&amount={amount}&upi={upi}&info={comment}"
 
     data = requests.get(url)
 
