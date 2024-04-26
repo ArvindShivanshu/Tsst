@@ -527,7 +527,7 @@ def send_withdraw(message,amount,upi):
     orderid = str(uuid.uuid4().int)[:10]
     user_id = message.chat.id
     name = message.chat.first_name
-    comment = f"@{bot.get_me().username}"
+    comment = f"{bot.get_me().username}"
     
     
     
