@@ -384,6 +384,7 @@ def send_welcome(message):
         if not db.users.find_one({'user_id': user_id}):
             if ref_by and int(ref_by) != user_id and db.users.find_one({'user_id': int(ref_by)}):
                 db.users.update_one({'user_id': user_id}, {'$set': {'user_id': user_id, 'ref_by': int(ref_by)}},upsert=True)
+                db.users.update_one({'_id': 'total_users'}, {'$inc': {'count': 1}}, upsert=True)
                 db.users.update_one({'user_id': int(ref_by)}, {'$inc': {'total_ref': 1}},upsert=True)
             else:
                 db.users.update_one({'user_id': user_id}, {'$set': {'user_id': user_id,'ref_by': "none"}},upsert=True)
@@ -391,7 +392,6 @@ def send_welcome(message):
         # Check user membership
 
         send_join_message(message)
-
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_all_commands(message):
