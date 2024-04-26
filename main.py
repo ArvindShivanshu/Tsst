@@ -98,9 +98,8 @@ def send_welcome(message):
 
 
 
-    # Send new user notification to admin
-    admin_message = f"New user joined!\n\nUsername: @{username}\nUser ID: {user_id}\nFirst Name: {first_name}\nLast Name: {last_name}\nUser Link: https://t.me/{username}"
-    bot.send_message(admin_chat_id, admin_message)
+    # Send new user notification to admin admin_message = f"New user joined!\n\nUsername: @{username}\nUser ID: {user_id}\nFirst Name: {first_name}\nLast Name: {last_name}\nUser Link: https://t.me/{username}"
+bot.send_message(admin_chat_id, admin_message)
 
     # Check user membership
     send_join_message(message)
@@ -168,7 +167,7 @@ def deduct_balance_admin(message):
 
 @bot.message_handler(commands=['stats'])
 def stats_command(message):
-    if message.chat.id == admin_chat_id:
+if message.chat.id == admin_chat_id:
         user_count = db.users.count_documents({})
         bot.send_message(message.chat.id, f"Total users: {user_count}🥂\n\n Contact- @Future_herenow for any query")
     else:
@@ -476,22 +475,22 @@ def process_withdraw_amo(message,upi):
     balance = userData.get('balance', 0)
 
 
-    if message.text == buttons['back_btn']:
+if message.text == buttons['back_btn']:
         bot.send_message(user_id,"❌ withdraw cancelled",reply_markup=menu_markup())
         return
 
-    if not re.match(r'^\d+(\.\d{1,8})?$', message.text):
+if not re.match(r'^\d+(\.\d{1,8})?$', message.text):
             bot.send_message(user_id, "Invalid withdrawal amount. Please enter a valid number.",reply_markup=menu_markup())
             return
 
 
     amount = float(message.text)
 
-    if float(min_with) > float(amount):
+if float(min_with) > float(amount):
         bot.send_message(user_id,f"*❌ Minimum Withdraw:* {min_with} *INR*",reply_markup=menu_markup(),parse_mode="markdown")
         return
 
-    if float(balance) < float(amount):
+if float(balance) < float(amount):
         bot.send_message(user_id,f"*❌ You Have Only Withdrawal Amount Is:*{balance:.7f} *INR*",reply_markup=menu_markup(),parse_mode="markdown")
         return      
 
@@ -513,7 +512,7 @@ def ref_bons(user_id):
     ref_bonus = random.randint(1, 2)
 
 
-    if referred_by != "none" and referred == None:
+if referred_by != "none" and referred == None:
 
         db.users.update_one({'user_id':user_id},{'$set':{'referred':1}},upsert=True)
 
@@ -533,7 +532,8 @@ url = f"https://full2sms.in/api/v2/payout?mid=dYETiuRZGavq35JBhkx68LU42&mkey=z6D
 
     data = requests.get(url)
 
-    if data.json()['status'] == 'failed':
+   
+if data.json()['status'] == 'failed':
         bot.send_message(user_id,"Try Again..")
         bot.send_message(admin_chat_id,f"Response: {data.text}\nOrderId: {orderid}")
 
