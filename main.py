@@ -97,22 +97,6 @@ def send_welcome(message):
 # check balance and total balance
 
 
-@bot.message_handler(commands=['totalbalance'])
-def total_balance(message):
-    if message.chat.id == admin_chat_id:
-        total_balance = 0
-        for user in db.users.find():
-            total_balance += user.get('balance', 0)
-        bot.send_message(message.chat.id, f"Total balance of all users: ₹{total_balance:.2f}")
-    # Track referral
-    ref_by = message.text.split()[1] if len(message.text.split()) > 1 and message.text.split()[1].isdigit() else None
-
-    if not db.users.find_one({'user_id': user_id}):
-        if ref_by and int(ref_by)!= user_id and db.users.find_one({'user_id': int(ref_by)}):
-            db.users.update_one({'user_id': user_id}, {'$set': {'user_id': user_id, 'ref_by': int(ref_by)}}, upsert=True)
-            db.users.update_one({'user_id': int(ref_by)}, {'$inc': {'total_ref': 1}}, upsert=True)
-        else:
-            db.users.update_one({'user_id': user_id}, {'$set': {'user_id': user_id, 'ref_by': "none"}}, upsert=True)
 
     # Send new user notification to admin
     admin_message = f"New user joined!\n\nUsername: @{username}\nUser ID: {user_id}\nFirst Name: {first_name}\nLast Name: {last_name}\nUser Link: https://t.me/{username}"
