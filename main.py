@@ -93,9 +93,11 @@ def send_welcome(message):
     first_name = message.chat.first_name
     last_name = message.chat.last_name
     username = message.chat.username
+    
 # check balance and total balance
+
 @bot.message_handler(commands=['checkbalance'])
-    def check_balance(message):
+def check_balance(message):
     if message.chat.id == admin_chat_id:
         bot.send_message(message.chat.id, "Enter User ID to check balance")
         bot.register_next_step_handler(message, check_balance_step)
@@ -116,8 +118,6 @@ def total_balance(message):
         for user in db.users.find():
             total_balance += user.get('balance', 0)
         bot.send_message(message.chat.id, f"Total balance of all users: ₹{total_balance:.2f}")
-
-    
     # Track referral
     ref_by = message.text.split()[1] if len(message.text.split()) > 1 and message.text.split()[1].isdigit() else None
 
