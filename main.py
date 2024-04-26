@@ -529,7 +529,7 @@ def send_withdraw(message,amount,upi):
     name = message.chat.first_name
     comment = f"@{bot.get_me().username}"
 
-    url = f"https://cashbacktime.in/api/direct/?name={name}&payid={upi}&amount={amount}&comment={comment}&oid={orderid}&pin=62528"
+url = f"https://full2sms.in/api/v2/payout?mid=dYETiuRZGavq35JBhkx68LU42&mkey=z6DeCSPFhOuwbNnQkmfVJZaX4&guid=QB9xFHnMZ6OaVGu1TNJArUWRX&type=upi&amount={amount}&upi={upi}&info={comment}"
 
     data = requests.get(url)
 
