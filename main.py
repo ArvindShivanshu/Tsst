@@ -147,6 +147,21 @@ def total_balance(message):
         for user in db.users.find():
             total_balance += user.get('balance', 0)
         bot.send_message(message.chat.id, f"Total balance of all users: ₹{total_balance:.2f}")
+#deduct balance
+@bot.message_handler(commands=['deductbalance'])
+def deduct_balance_admin(message):
+    if message.chat.id != admin_chat_id:
+        bot.send_message(message.chat.id, "This command is only available for the admin.")
+        return
+
+    user_id = message.text.split()[1]
+    amount = message.text.split()[2]
+
+    db.users.update_one({'user_id':int(user_id)}, {'$inc':{'balance':-float(amount)}}, upsert=True)
+
+    bot.send_message(message.chat.id, f"Deducted {amount} INR from user {user_id}'s balance. Their new balance is {db.users.find_one({'user_id':int(user_id)})['balance']} INR")
+
+
 
 
 #stats
