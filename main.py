@@ -72,7 +72,7 @@ def menu_markup():
 
 def menu(user_id):
 
-    start_message = (f"<b>Welcome to DreamxUPI World ❤️\n\n"
+    start_message = (f"<b>Welcome to UPI AI BOT World ❤️\n\n"
     "Choose Given Button To Earn....!! </b>")
 
     bot.send_message(chat_id=user_id, text= start_message,reply_markup=menu_markup(),parse_mode="HTML")
@@ -478,7 +478,7 @@ def ref_bons(user_id):
 
     referred_by =  userData.get("ref_by", None) 
     referred = userData.get("referred",None)
-    ref_bonus = random.randint(1, 3)
+    ref_bonus = random.randint(1, 2)
 
 
     if referred_by != "none" and referred == None:
