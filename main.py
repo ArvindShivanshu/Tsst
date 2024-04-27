@@ -13,7 +13,7 @@ from telebot.types import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardBut
 
 uri = "mongodb+srv://c00478111:1234567890@cluster0.oqewumn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
-bot_token = "6945775631:AAFpetwv6gkUKlO8uXC0gx0DA_k-V3zzs4A" # Telegram bot token
+bot_token = "6945775631:AAG-7jL-5X81YqefA5NeImvWmL7ZvMyzrrA" # Telegram bot token
 
 
 bot = telebot.TeleBot(bot_token)
