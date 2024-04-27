@@ -380,7 +380,7 @@ def send_welcome(message):
 
         # Track referral
         ref_by = message.text.split()[1] if len(message.text.split()) > 1 and message.  text.split()[1].isdigit() else None
-
+        print(f"ref_by value: {ref_by}")
         if not db.users.find_one({'user_id': user_id}):
             if ref_by and int(ref_by) != user_id and db.users.find_one({'user_id': int(ref_by)}):
                 db.users.update_one({'user_id': user_id}, {'$set': {'user_id': user_id, 'ref_by': int(ref_by)}},upsert=True)
