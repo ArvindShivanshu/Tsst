@@ -72,8 +72,8 @@ def menu_markup():
 
 def menu(user_id):
 
-    start_message = (f"<b>Welcome to UPI AI BOT World ❤️\n\n"
-    "Choose Given Button To Earn....!! </b>")
+    start_message = (f"<b>Welcome to 𝐔ᴘɪ 𝐂ᴀꜱʜ 𝐁ᴏᴛ World ❤️\n\n"
+    "Choose Given Button To Earn....!! \n\n Develop By @Future_HereNOW </b>")
 
     bot.send_message(chat_id=user_id, text= start_message,reply_markup=menu_markup(),parse_mode="HTML")
 
