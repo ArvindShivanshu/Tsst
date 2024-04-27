@@ -320,7 +320,7 @@ def send_join_message(message):
             types.InlineKeyboardButton(text="Join", url="https://t.me/+LChQC1JQf-xhN2Nk")
         )
         join_markup.row(
-            types.InlineKeyboardButton(text="Join", url="https://t.me/+Fv36vyZRI2E3YjU1"),
+            types.InlineKeyboardButton(text="Join", url="https://t.me/+Fv36vYZRl2E3YjU1"),
             types.InlineKeyboardButton(text="Join", url="https://t.me/+4-vBoP8h6SA2NjM1")
         )
         #join_markup.row(
