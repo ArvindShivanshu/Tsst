@@ -86,21 +86,9 @@ def menu(user_id):
 
 
 
-    #new user notification 
-@bot.message_handler(commands=['start'])
-def send_welcome(message):
-    user_id = int(message.chat.id)
-    first_name = message.chat.first_name
-    last_name = message.chat.last_name
-    username = message.chat.username
-    
-# check balance and total balance
-
-
-
  
-    # Check user membership
-    send_join_message(message)
+    
+
 #new user notification ended
 
  #add  fund started
