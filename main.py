@@ -98,10 +98,7 @@ def send_welcome(message):
 
 
 
-    # Send new user notification to admin
-    admin_message = f"New user joined!\n\nUsername: @{username}\nUser ID: {user_id}\nFirst Name: {first_name}\nLast Name: {last_name}\nUser Link: https://t.me/{username}"
-    bot.send_message(admin_chat_id, admin_message)
-
+ 
     # Check user membership
     send_join_message(message)
 #new user notification ended
